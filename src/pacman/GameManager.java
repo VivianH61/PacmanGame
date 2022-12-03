@@ -229,13 +229,13 @@ public class GameManager {
     }
 
     /**
-     * Generates the ghosts for the pacman!
+     * Generates the ghosts.
      */
     public void generateGhosts() {
-        this.ghosts.add(new Ghost(18.5 * BarObstacle.THICKNESS, 12.5 * BarObstacle.THICKNESS, Color.DEEPPINK, maze, this));
-        this.ghosts.add(new Ghost(22.5 * BarObstacle.THICKNESS, 12.5 * BarObstacle.THICKNESS, Color.GREENYELLOW, maze, this));
-        this.ghosts.add(new Ghost(28.5 * BarObstacle.THICKNESS, 12.5 * BarObstacle.THICKNESS, Color.BLACK, maze, this));
-        this.ghosts.add(new Ghost(28.5 * BarObstacle.THICKNESS, 9.5 * BarObstacle.THICKNESS, Color.SPRINGGREEN, maze, this));
+        this.ghosts.add(new Ghost(18.5 * BarObstacle.THICKNESS, 12.5 * BarObstacle.THICKNESS, "./img/ghost1.png", maze, this));
+        this.ghosts.add(new Ghost(22.5 * BarObstacle.THICKNESS, 12.5 * BarObstacle.THICKNESS, "./img/ghost2.png", maze, this));
+        this.ghosts.add(new Ghost(28.5 * BarObstacle.THICKNESS, 12.5 * BarObstacle.THICKNESS, "./img/ghost3.png", maze, this));
+        this.ghosts.add(new Ghost(28.5 * BarObstacle.THICKNESS, 9.5 * BarObstacle.THICKNESS, "./img/ghost4.png", maze, this));
     }
 
     /**
@@ -248,15 +248,19 @@ public class GameManager {
         }
         switch(event.getCode()) {
             case RIGHT:
+            	//pacman.setDirection("right");
                 this.rightPacmanAnimation.start();
                 break;
             case LEFT:
+            	//pacman.setDirection("left");
                 this.leftPacmanAnimation.start();
                 break;
             case UP:
+            	//pacman.setDirection("up");
                 this.upPacmanAnimation.start();
                 break;
             case DOWN:
+            	//pacman.setDirection("down");
                 this.downPacmanAnimation.start();
                 break;
         }

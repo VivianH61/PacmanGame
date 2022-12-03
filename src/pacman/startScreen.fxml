@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.startControl">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacman.startControl">
    <children>
       <SplitPane dividerPositions="0.2408026755852843" layoutY="5.0" orientation="VERTICAL" prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -15,7 +15,7 @@
                <children>
                   <ImageView fitHeight="411.0" fitWidth="800.0" layoutX="-1.0" layoutY="-135.0">
                      <image>
-                        <Image url="@../startpage.png" />
+                        <Image url="@../img/startpage.png" />
                      </image>
                   </ImageView>
                </children>
