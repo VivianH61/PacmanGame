@@ -1,9 +1,11 @@
-package sample;
+package pacman;
+
+
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class Door extends Rectangle {
+public class BarObstacle extends Rectangle {
 
     public static double THICKNESS = 25;
     /**
@@ -13,17 +15,17 @@ public class Door extends Rectangle {
      * @param orientation - horizontal or vertical
      * @param length - the length of the bar (1 == 100px)
      */
-    public Door(double x, double y, String orientation, double length) {
+    public BarObstacle(double x, double y, String orientation, double length) {
         this.setX(x);
         this.setY(y);
         if (orientation.equals("horizontal")) {
-            this.setHeight(Door.THICKNESS);
-            this.setWidth(length * Door.THICKNESS);
+            this.setHeight(BarObstacle.THICKNESS);
+            this.setWidth(length * BarObstacle.THICKNESS);
         } else {
-            this.setHeight(length * Door.THICKNESS);
+            this.setHeight(length * BarObstacle.THICKNESS);
             this.setWidth(BarObstacle.THICKNESS);
         }
-        this.setFill(Color.YELLOW);
+        this.setFill(Color.CADETBLUE);
         this.setStrokeWidth(3);
     }
 }
