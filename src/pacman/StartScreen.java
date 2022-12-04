@@ -16,7 +16,7 @@ public class StartScreen extends Application {
     	
         primaryStage.setTitle( "StartPage" );
     	Parent startroot = FXMLLoader.load(getClass().getResource("startScreen.fxml"));
-    	Scene startscene = new Scene(startroot, 800, 600);
+    	Scene startscene = new Scene(startroot, 600, 600);
         
         primaryStage.setScene(startscene);
 

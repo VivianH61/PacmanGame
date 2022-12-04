@@ -17,11 +17,11 @@ public class Pacman extends Circle {
         this.setCenterX(x);
         this.setCenterY(y);
         this.setRadius(25);
-        Image img = new Image("./img/pacman_right.png");
+        Image img = new Image("./img/pacman.png");
         ImagePattern pattern = new ImagePattern(img);
         this.setFill(pattern);
     }
-    
+    /*
     public void setDirection(String dir) {
     	switch (dir) {
     		case "left":
@@ -46,4 +46,5 @@ public class Pacman extends Circle {
     			break;
     	}
     }
+    */
 }
