@@ -425,7 +425,5 @@ public class GameManager {
             }
         }
     }
-    
-    //public void checkDoorCoalition()
 
 }

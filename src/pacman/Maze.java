@@ -10,11 +10,11 @@ import java.util.Set;
 public class Maze {
 
     public Set<BarObstacle> obstacles;
-    public Set<Door> doors;
+    //public Set<Door> doors;
 
     Maze() {
         obstacles = new HashSet<>();
-        doors = new HashSet();
+        //doors = new HashSet();
     }
 
     /**
@@ -37,9 +37,6 @@ public class Maze {
         return false;
     }
     
-//    public Boolean isTouchingDoor(double x, double y, double padding) {
-//    	
-//    }
 
     /**
      * lets you know if there's an obstacle in the current coordinate
@@ -70,12 +67,9 @@ public class Maze {
         // bottom
         this.obstacles.add(new BarObstacle(0, 600, "horizontal", 48));
         // left
-        this.obstacles.add(new BarObstacle(0, 0, "vertical", 11));
-        this.obstacles.add(new BarObstacle(0, 600 - 10 * BarObstacle.THICKNESS, "vertical", 11));
+        this.obstacles.add(new BarObstacle(0, 0, "vertical", 24));
         // right
-        this.obstacles.add(new BarObstacle(1225 - BarObstacle.THICKNESS, 0, "vertical", 11));
-        this.obstacles.add(new BarObstacle(1225 - BarObstacle.THICKNESS, 600 - 10 * BarObstacle.THICKNESS, "vertical", 11));
-
+        this.obstacles.add(new BarObstacle(1225 - BarObstacle.THICKNESS, 0, "vertical", 24));
         //~~~~~~~~~~~~~~~~~~~~~~~~~ Islands ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         // obsTopLeft
         this.obstacles.add(new BarObstacle(12 * BarObstacle.THICKNESS, BarObstacle.THICKNESS, "vertical", 4));
@@ -127,11 +121,7 @@ public class Maze {
         this.obstacles.add(new BarObstacle(17 * BarObstacle.THICKNESS, 8 * BarObstacle.THICKNESS, "horizontal", 5));
         // cateLeftH
         this.obstacles.add(new BarObstacle(27 * BarObstacle.THICKNESS, 8 * BarObstacle.THICKNESS, "horizontal", 5));
-        
-        this.doors.add(new Door(0, 11 * BarObstacle.THICKNESS, "vertical", 3));
-        this.doors.add(new Door(48 * BarObstacle.THICKNESS, 11 * BarObstacle.THICKNESS, "vertical", 3));
 
         root.getChildren().addAll(obstacles);
-        root.getChildren().addAll(doors);
     }
 }

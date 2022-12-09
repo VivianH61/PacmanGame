@@ -18,6 +18,7 @@ public class Ghost extends Rectangle implements Runnable {
     Maze maze;
     AnimationTimer animation;
     int timesWalked;
+    int step; // control the speed of the ghost
 
     public Ghost(double x, double y, String imgSrc, Maze maze, GameManager gameManager) {
         this.setX(x);
@@ -29,8 +30,8 @@ public class Ghost extends Rectangle implements Runnable {
         Image img = new Image(imgSrc);
         ImagePattern pattern = new ImagePattern(img);
         this.setFill(pattern);
-        //this.setFill(color);
         this.timesWalked = 0;
+        this.step = 5;
         this.direction = "down";
         this.createAnimation();
     }
@@ -110,11 +111,11 @@ public class Ghost extends Rectangle implements Runnable {
      * @param padding
      */
     private void moveUntilYouCant(String whereToGo, String whereToChangeTo, double leftEdge, double topEdge, double rightEdge, double bottomEdge, double padding) {
-        double step = 5;
+        //double step = 5;
         switch (whereToGo) {
             case "left":
                 if (!maze.isTouching(leftEdge, topEdge, padding)) {
-                    setX(leftEdge - step);
+                    setX(leftEdge - this.step);
                 } else {
                     while (maze.isTouching(getX(), getY(), padding)) {
                         setX(getX() + 1);
@@ -124,7 +125,7 @@ public class Ghost extends Rectangle implements Runnable {
                 break;
             case "right":
                 if (!maze.isTouching(rightEdge, topEdge, padding)) {
-                    setX(leftEdge + step);
+                    setX(leftEdge + this.step);
                 } else {
                     while (maze.isTouching(getX() + getWidth(), getY(), padding)) {
                         setX(getX() - 1);
@@ -134,7 +135,7 @@ public class Ghost extends Rectangle implements Runnable {
                 break;
             case "up":
                 if (!maze.isTouching(leftEdge, topEdge, padding)) {
-                    setY(topEdge - step);
+                    setY(topEdge - this.step);
                 } else {
                     while (maze.isTouching(getX(), getY(), padding)) {
                         setY(getY() + 1);
