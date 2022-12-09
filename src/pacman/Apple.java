@@ -1,21 +1,15 @@
 package pacman;
 
-
-
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 
-
-public class Cookie extends Dot {
-    public Cookie(double x, double y) {
+public class Apple extends Dot {
+	public Apple(double x, double y) {
     	super(x, y);
-    	this.value = 1;
+    	this.value = 5;
     	this.life_value = 0;
-    	Image img = new Image("./img/cookie.png");
+    	Image img = new Image("./img/apple.png");
         ImagePattern pattern = new ImagePattern(img);
         this.setFill(pattern);
     }
-
 }

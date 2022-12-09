@@ -17,7 +17,7 @@ public class GameManager {
 
     private Pacman pacman;
     private Group root;
-    private Set<Cookie> cookieSet;
+    private Set<Dot> cookieSet;
     private Set<Ghost> ghosts;
     private AnimationTimer leftPacmanAnimation;
     private AnimationTimer rightPacmanAnimation;
@@ -177,9 +177,15 @@ public class GameManager {
         skip = new Integer[]{1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 21};
         for (int i = 0; i < 23; i++) {
             if (!Arrays.asList(skip).contains(i)) {
-                Cookie cookie = new Cookie(((2 * i) + 2.5) * BarObstacle.THICKNESS, 14.5 * BarObstacle.THICKNESS);
-                this.cookieSet.add(cookie);
-                root.getChildren().add(cookie);
+            	Dot new_dot;
+            	if (i == 4) {
+            		new_dot = new Star(((2 * i) + 2.5) * BarObstacle.THICKNESS, 14.5 * BarObstacle.THICKNESS);
+            	} else {
+            		new_dot = new Cookie(((2 * i) + 2.5) * BarObstacle.THICKNESS, 14.5 * BarObstacle.THICKNESS);
+            	}
+                
+                this.cookieSet.add(new_dot);
+                root.getChildren().add(new_dot);
             }
         }
 
@@ -187,9 +193,16 @@ public class GameManager {
         skip = new Integer[]{1, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18, 19, 21};
         for (int i = 0; i < 23; i++) {
             if (!Arrays.asList(skip).contains(i)) {
-                Cookie cookie = new Cookie(((2 * i) + 2.5) * BarObstacle.THICKNESS, 16.5 * BarObstacle.THICKNESS);
-                this.cookieSet.add(cookie);
-                root.getChildren().add(cookie);
+            	Dot new_dot;
+            	// add apple
+            	if (i == 20) {
+            		new_dot = new Apple(((2 * i) + 2.5) * BarObstacle.THICKNESS, 16.5 * BarObstacle.THICKNESS);
+            	} else {
+            		new_dot = new Cookie(((2 * i) + 2.5) * BarObstacle.THICKNESS, 16.5 * BarObstacle.THICKNESS);
+            	}
+                
+                this.cookieSet.add(new_dot);
+                root.getChildren().add(new_dot);
             }
         }
 
@@ -248,19 +261,15 @@ public class GameManager {
         }
         switch(event.getCode()) {
             case RIGHT:
-            	//pacman.setDirection("right");
                 this.rightPacmanAnimation.start();
                 break;
             case LEFT:
-            	//pacman.setDirection("left");
                 this.leftPacmanAnimation.start();
                 break;
             case UP:
-            	//pacman.setDirection("up");
                 this.upPacmanAnimation.start();
                 break;
             case DOWN:
-            	//pacman.setDirection("down");
                 this.downPacmanAnimation.start();
                 break;
         }
@@ -344,7 +353,7 @@ public class GameManager {
         double pacmanRightEdge = pacmanCenterX + pacman.getRadius();
         double pacmanTopEdge = pacmanCenterY - pacman.getRadius();
         double pacmanBottomEdge = pacmanCenterY + pacman.getRadius();
-        for (Cookie cookie:cookieSet) {
+        for (Dot cookie:cookieSet) {
             double cookieCenterX = cookie.getCenterX();
             double cookieCenterY = cookie.getCenterY();
             double cookieLeftEdge = cookieCenterX - cookie.getRadius();
@@ -356,6 +365,7 @@ public class GameManager {
                 if ((cookieCenterY >= pacmanTopEdge && cookieCenterY <= pacmanBottomEdge) && (pacmanRightEdge >= cookieLeftEdge && pacmanRightEdge <= cookieRightEdge)) {
                     if (cookie.isVisible()) {
                         this.score += cookie.getValue();
+                        this.lifes += cookie.getLifeValue();
                         this.cookiesEaten++;
                     }
                     cookie.hide();

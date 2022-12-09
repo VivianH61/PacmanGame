@@ -11,8 +11,7 @@ public class SetUpScreen extends Application {
 	Stage stage=new Stage();
 	@Override
     public void start(Stage theStage) throws Exception{
-//        Parent root = FXMLLoader.load(getClass().getResource("pacman.fxml"));
-        theStage.setTitle( "Pacman" );
+        theStage.setTitle("Pacman");
 
         Group root = new Group();
         Scene theScene = new Scene( root );
