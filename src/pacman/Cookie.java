@@ -2,37 +2,20 @@ package pacman;
 
 
 
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 
 public class Cookie extends Dot {
-
-    private int value;
     public Cookie(double x, double y) {
     	super(x, y);
+    	this.value = 1;
+    	this.change_life = 0;
+    	Image img = new Image("./img/cookie.png");
+        ImagePattern pattern = new ImagePattern(img);
+        this.setFill(pattern);
     }
-
-//    public Cookie(double x, double y) {
-//        this.value = 5;
-//        this.setCenterX(x);
-//        this.setCenterY(y);
-//        this.setRadius(12.5);
-//        this.setFill(Color.SADDLEBROWN);
-//    }
-    
-   
-
-//    public int getValue() {
-//        return value;
-//    }
-//
-//    public void hide() {
-//        this.setVisible(false);
-//    }
-//
-//    public void show() {
-//        this.setVisible(true);
-//    }
 
 }
