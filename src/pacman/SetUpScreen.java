@@ -8,7 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class SetUpScreen extends Application {
-	Stage stage=new Stage();
+	Stage stage = new Stage();
 	@Override
     public void start(Stage theStage) throws Exception{
         theStage.setTitle("Pacman");
@@ -33,6 +33,10 @@ public class SetUpScreen extends Application {
 	public void  showWindow() throws Exception {
 		start(stage);
 	}
+	
+	public static void main(String[] args) {
+        launch(args);
+    }
 
 
 }
