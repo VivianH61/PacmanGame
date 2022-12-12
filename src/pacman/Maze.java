@@ -10,11 +10,9 @@ import java.util.Set;
 public class Maze {
 
     public Set<BarObstacle> obstacles;
-    //public Set<Door> doors;
 
     Maze() {
         obstacles = new HashSet<>();
-        //doors = new HashSet();
     }
 
     /**

@@ -1,7 +1,5 @@
 package pacman;
 
-
-
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.input.KeyCode;
@@ -30,9 +28,7 @@ public class GameManager {
     private boolean gameEnded;
     private int cookiesEaten;
 
-    /**
-     * Constructor
-     */
+
     GameManager(Group root) {
         this.root = root;
         this.maze = new Maze();
@@ -62,7 +58,6 @@ public class GameManager {
         this.pacman.setCenterX(2.5 * BarObstacle.THICKNESS);
         this.pacman.setCenterY(2.5 * BarObstacle.THICKNESS);
         lifes--;
-        score -= 10;
         this.scoreBoard.lifes.setText("Lifes: " + this.lifes);
         this.scoreBoard.score.setText("Score: " + this.score);
         if (lifes == 0) {
@@ -117,9 +112,15 @@ public class GameManager {
         Integer skip[] = {5, 17};
         for (int i = 0; i < 23; i++) {
             if (!Arrays.asList(skip).contains(i)) {
-                Cookie cookie = new Cookie(((2*i) + 2.5) * BarObstacle.THICKNESS, 2.5 * BarObstacle.THICKNESS);
-                this.cookieSet.add(cookie);
-                root.getChildren().add(cookie);
+            	Dot new_dot;
+            	if ((i == 3) || (i == 14)) {
+            		new_dot = new Star(((2*i) + 2.5) * BarObstacle.THICKNESS, 2.5 * BarObstacle.THICKNESS);
+            	} else {
+            		new_dot = new Cookie(((2*i) + 2.5) * BarObstacle.THICKNESS, 2.5 * BarObstacle.THICKNESS);
+            	}
+                
+                this.cookieSet.add(new_dot);
+                root.getChildren().add(new_dot);
             }
         }
 
@@ -180,6 +181,8 @@ public class GameManager {
             	Dot new_dot;
             	if (i == 4) {
             		new_dot = new Star(((2 * i) + 2.5) * BarObstacle.THICKNESS, 14.5 * BarObstacle.THICKNESS);
+            	} else if (i == 2) {
+            		new_dot = new Apple(((2 * i) + 2.5) * BarObstacle.THICKNESS, 14.5 * BarObstacle.THICKNESS);
             	} else {
             		new_dot = new Cookie(((2 * i) + 2.5) * BarObstacle.THICKNESS, 14.5 * BarObstacle.THICKNESS);
             	}
@@ -311,28 +314,28 @@ public class GameManager {
                 case "left":
                     if (!maze.isTouching(pacman.getCenterX() - pacman.getRadius(), pacman.getCenterY(), 15)) {
                         pacman.setCenterX(pacman.getCenterX() - step);
-                        checkCookieCoalition(pacman, "x");
+                        checkDotCoalition(pacman, "x");
                         checkGhostCoalition();
                     }
                     break;
                 case "right":
                     if (!maze.isTouching(pacman.getCenterX() + pacman.getRadius(), pacman.getCenterY(), 15)) {
                         pacman.setCenterX(pacman.getCenterX() + step);
-                        checkCookieCoalition(pacman, "x");
+                        checkDotCoalition(pacman, "x");
                         checkGhostCoalition();
                     }
                     break;
                 case "up":
                     if (!maze.isTouching(pacman.getCenterX(), pacman.getCenterY() - pacman.getRadius(), 15)) {
                         pacman.setCenterY(pacman.getCenterY() - step);
-                        checkCookieCoalition(pacman, "y");
+                        checkDotCoalition(pacman, "y");
                         checkGhostCoalition();
                     }
                     break;
                 case "down":
                    if (!maze.isTouching(pacman.getCenterX(), pacman.getCenterY() + pacman.getRadius(), 15)) {
                        pacman.setCenterY(pacman.getCenterY() + step);
-                       checkCookieCoalition(pacman, "y");
+                       checkDotCoalition(pacman, "y");
                        checkGhostCoalition();
                    }
                    break;
@@ -346,7 +349,7 @@ public class GameManager {
      * @param pacman
      * @param axis
      */
-    private void checkCookieCoalition(Pacman pacman, String axis) {
+    private void checkDotCoalition(Pacman pacman, String axis) {
         double pacmanCenterY = pacman.getCenterY();
         double pacmanCenterX = pacman.getCenterX();
         double pacmanLeftEdge = pacmanCenterX - pacman.getRadius();
@@ -374,6 +377,7 @@ public class GameManager {
                 if ((cookieCenterY >= pacmanTopEdge && cookieCenterY <= pacmanBottomEdge) && (pacmanLeftEdge >= cookieLeftEdge && pacmanLeftEdge <= cookieRightEdge)) {
                     if (cookie.isVisible()) {
                         this.score += cookie.getValue();
+                        this.lifes += cookie.getLifeValue();
                         this.cookiesEaten++;
                     }
                     cookie.hide();
@@ -383,6 +387,7 @@ public class GameManager {
                 if ((cookieCenterX >= pacmanLeftEdge && cookieCenterX <= pacmanRightEdge) && (pacmanBottomEdge >= cookieTopEdge && pacmanBottomEdge <= cookieBottomEdge)) {
                     if (cookie.isVisible()) {
                         this.score += cookie.getValue();
+                        this.lifes += cookie.getLifeValue();
                         this.cookiesEaten++;
                     }
                     cookie.hide();
@@ -391,12 +396,14 @@ public class GameManager {
                 if ((cookieCenterX >= pacmanLeftEdge && cookieCenterX <= pacmanRightEdge) && (pacmanTopEdge <= cookieBottomEdge && pacmanTopEdge >= cookieTopEdge)) {
                     if (cookie.isVisible()) {
                         this.score += cookie.getValue();
+                        this.lifes += cookie.getLifeValue();
                         this.cookiesEaten++;
                     }
                     cookie.hide();
                 }
             }
             this.scoreBoard.score.setText("Score: " + this.score);
+            this.scoreBoard.lifes.setText("Lifes: " + this.lifes);
             if (this.cookiesEaten == this.cookieSet.size()) {
                 this.endGame();
             }

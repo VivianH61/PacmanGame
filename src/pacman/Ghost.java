@@ -32,7 +32,7 @@ public class Ghost extends Rectangle implements Runnable {
         this.setFill(pattern);
         this.timesWalked = 0;
         this.step = 5;
-        this.direction = "down";
+        this.direction = "up";
         this.createAnimation();
     }
 
@@ -111,7 +111,6 @@ public class Ghost extends Rectangle implements Runnable {
      * @param padding
      */
     private void moveUntilYouCant(String whereToGo, String whereToChangeTo, double leftEdge, double topEdge, double rightEdge, double bottomEdge, double padding) {
-        //double step = 5;
         switch (whereToGo) {
             case "left":
                 if (!maze.isTouching(leftEdge, topEdge, padding)) {
